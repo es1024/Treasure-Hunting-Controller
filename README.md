@@ -1,4 +1,11 @@
 Treasure-Hunting-Controller
 ===========================
+To use this controller, you need PHP 5.4 or greater.
 
-See http://meta.codegolf.stackexchange.com/a/2164/29611
+Place your bot in players/[BotName]/ and add an entry under bots.ini. Then run
+
+    php ./controller.php
+	
+A log of the run may be found in `./logs/`.
+
+See http://meta.codegolf.stackexchange.com/a/2164/29611 for details on the challenge

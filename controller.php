@@ -86,6 +86,7 @@ function readAll(){
 }
 $day = 1;
 $nalive = count($names) * 5; $total = $nalive;
+printAll("INDEX /id/\n");
 while($nalive > 5){
 	$N = max(3, floor($nalive/4));
 	$n = mt_rand(2, $N);
@@ -135,7 +136,7 @@ while($nalive > 5){
 				$inp[$r[0]][$r[1]] = 'r';			
 			}
 		}
-		$ostring = "END_TURN /id/";
+		$ostring = "END_TURN $turn";
 		foreach($inp as $id=>$arr){
 			$ostring .= ' ' . implode(',', $arr);
 		}
@@ -153,7 +154,7 @@ while($nalive > 5){
 			}
 		}
 	}
-	$ostring = "END_DAY /id/";
+	$ostring = "END_DAY $day";
 	foreach($alive as $a){
 		$ostring .= ' ' . implode(',', $a);
 	}

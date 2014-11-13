@@ -114,7 +114,7 @@ while($nalive > 5){
 						$return_attempts[] = [$id, $i];
 					break;
 					default:
-						$streasure[$id][$i] += $returned;
+						$streasure[$id][$i] += $returned + 1;
 					break;
 					}
 				break;

@@ -8,4 +8,4 @@ Place your bot in players/[BotName]/ and add an entry under bots.ini. Then run
 	
 A log of the run may be found in `./logs/`.
 
-See http://meta.codegolf.stackexchange.com/a/2164/29611 for details on the challenge
+See http://codegolf.stackexchange.com/q/41482/29611 for details on the challenge

@@ -19,7 +19,7 @@ while(<>){
         my $i;
         for($i = 0; $i < 5; ++$i){
             # action is S if alive, D if dead. Servants will never be in camp.
-            $actions[$i] = $status[$i] eq 'A' ? 'S' : 'D';
+            $actions[$i] = $status[$i] eq 'A' ? 'S' : 'N';
         }
     }elsif(index($_, 'EXIT') == 0){
         exit 0;

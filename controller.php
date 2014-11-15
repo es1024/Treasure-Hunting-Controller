@@ -1,12 +1,13 @@
 <?php
 error_reporting(E_ERROR);
 
-$opts = getopt('h',['help','log-suffix:']);
+$opts = getopt('h',['help','log-suffix:','commas']);
 if(isset($opts['h']) || isset($opts['help'])){
 	echo 'Treasure Hunting on a Deserted Island controller' . PHP_EOL;
 	echo 'written by es1024' . PHP_EOL . PHP_EOL;
 	echo ' -h, --help         Display this help text' . PHP_EOL;
 	echo ' --log-suffix=""    Controller will apply this suffix to logs.' . PHP_EOL;
+	echo ' --commas           Controller will output final scores as a comma separated list.' . PHP_EOL;
 	echo PHP_EOL;
 	exit;
 }
@@ -159,8 +160,9 @@ while($nalive > 5){
 	printAll($ostring."\n");
 	++$day;
 }
-foreach($btreasure as $id=>$amt){
+if(isset($opts['commas']))
+	echo implode(',',$btreasure).PHP_EOL;
+else foreach($btreasure as $id=>$amt){
 	echo $names[$id] . ' - ' . $amt . PHP_EOL;
 }
-//echo implode(',',$btreasure).PHP_EOL;
 exit;

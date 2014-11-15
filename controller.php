@@ -32,18 +32,17 @@ $proc_open_desc = [
 	1 => ['pipe', 'w'],
 	2 => ['file', 'php://stderr', 'a']
 ];
-function kill_all(){
-	global $names, $pipes, $handles, $logs;
+function killAll(){
+	global $names, $pipes, $handles, $log;
 	printAll("EXIT\n");
 	foreach($names as $id=>$n){
 		fclose($pipes[$id][0]);
 		fclose($pipes[$id][1]);
-		fclose($pipes[$id][2]);
 		proc_close($handles[$id]);
-		fclose($logs[$id]);
 	}
+	fclose($log);
 }
-register_shutdown_function(kill_all);
+register_shutdown_function('killAll');
 foreach($bot_list as $n=>$data){
 	isset($data['name']) || die('name property not set for ' . $n . PHP_EOL);
 	isset($data['run']) || die('run property not set for ' . $n . PHP_EOL);
@@ -75,7 +74,7 @@ function readAll(){
 	global $names, $pipes;
 	$res = [];
 	foreach($pipes as $id=>&$p){
-		$txt = stream_get_line($p[1], 100, "\n");
+		$txt = trim(stream_get_line($p[1], 100, "\n"));
 		$txt || die('Could not read for "' . $names[$id] . '"' . PHP_EOL);
 
 		$arr = explode(',', $txt);
@@ -120,7 +119,6 @@ while($nalive > 5){
 					}
 				break;
 				default:
-					var_dump($alive);
 					die('Invalid value for $alive: ' . $alive[$id][$i] . PHP_EOL);
 				}
 			}

@@ -13,14 +13,14 @@ while running:
         day, max_deaths = tuple(map(int, msg[0].split('/')))
     elif msg_type == "START_TURN":
         turn = int(msg[0])
-        if day == 1: # On first day, return when half of others have returned
+        if day == 1: # On first day, return when two thirds of others have returned
             if turn == 1:
                 print("S,S,S,S,S")
-            elif num_active < (num_others*5) * 2/3:
+            elif turn == 30 or num_active < (num_others*5) * 2/3:
                 print("R,R,R,R,R")
             else:
                 print("S,S,S,S,S")
-        elif turn == 30 or expected_servants[turn] < max_deaths:
+        elif turn >= 29 or expected_servants[turn+1] < max_deaths:
             print("R,R,R,R,R") # If the critical number of servants are expected to return next turn, return to camp (the array is 0-based)
         else:
             print("S,S,S,S,S") # Otherwise, keep going

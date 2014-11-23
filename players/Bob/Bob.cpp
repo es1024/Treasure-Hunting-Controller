@@ -60,13 +60,13 @@ int main()
 
     if (day != 1)
       {
-      if (to_die > num_alive + 1)
+      if (to_die > num_alive)
         {
         turn_to_return = 30;
         }
       else
         {
-        turn_to_return = last_returns[last_returns.size() - to_die - 1] - 1;
+        turn_to_return = last_returns[last_returns.size() - to_die] - 1;
         }
       }
 
@@ -91,7 +91,7 @@ int main()
 
       if (day == 1)
         {
-        switch (compare(turn, 14))
+        switch (compare(turn, 30))
           {
             case -1:
               cout << "S,S,S,S,S" << endl;
